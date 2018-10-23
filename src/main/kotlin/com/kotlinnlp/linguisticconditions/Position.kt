@@ -39,8 +39,8 @@ class Position(private val index: Int) : Condition() {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     token != null && dependencyTree.getPosition(token.id) == this.index
 }

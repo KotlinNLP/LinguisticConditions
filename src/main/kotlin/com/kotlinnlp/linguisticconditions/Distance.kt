@@ -40,8 +40,8 @@ class Distance(private val value: Int) : Condition() {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     token != null && dependencyTree.getHead(token.id)?.let { headId ->
       abs(dependencyTree.getPosition(token.id) - dependencyTree.getPosition(headId)) == this.value

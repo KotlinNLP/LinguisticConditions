@@ -30,8 +30,8 @@ class Not(condition: Condition) : Operator.Single(condition) {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     !this.condition.isVerified(token = token, tokens = tokens, dependencyTree = dependencyTree)
 }

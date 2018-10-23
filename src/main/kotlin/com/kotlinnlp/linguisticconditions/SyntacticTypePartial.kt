@@ -41,9 +41,9 @@ class SyntacticTypePartial(val value: SyntacticType) : Condition() {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     token != null &&
-      token.flatSyntacticRelations.any { (it.dependency as SyntacticDependency.Base).type.isComposedBy(this.value) }
+      (token.syntacticRelation.dependency as SyntacticDependency.Base).type.isComposedBy(this.value)
 }

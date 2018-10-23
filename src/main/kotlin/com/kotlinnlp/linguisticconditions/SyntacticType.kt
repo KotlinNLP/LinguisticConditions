@@ -40,8 +40,8 @@ class SyntacticType(val value: SyntacticType) : Condition() {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
-    token != null && token.flatSyntacticRelations.any { it.dependency.type == this.value }
+    token != null && token.syntacticRelation.dependency.type == this.value
 }

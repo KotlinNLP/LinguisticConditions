@@ -95,7 +95,7 @@ abstract class Condition {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  abstract fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  abstract fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean
 }

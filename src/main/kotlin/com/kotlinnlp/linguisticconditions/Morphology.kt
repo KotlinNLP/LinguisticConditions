@@ -81,10 +81,10 @@ class Morphology(
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
-    token != null && token.flatMorphologies.first().let { morpho ->
+    token != null && token.morphologies.single().value.let { morpho ->
       this.lemma.let { it == null || it == morpho.lemma } &&
         when (morpho) {
           is Genderable -> this.gender.let { it == null || it == morpho.gender }

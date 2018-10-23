@@ -30,8 +30,8 @@ class And(conditions: List<Condition>) : Operator.Multiple(conditions) {
    *
    * @return a boolean indicating if this condition is verified for the given [token]
    */
-  override fun isVerified(token: MorphoSynToken?,
-                          tokens: List<MorphoSynToken>,
+  override fun isVerified(token: MorphoSynToken.Single?,
+                          tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     this.conditions.all { it.isVerified(token = token, tokens = tokens, dependencyTree = dependencyTree) }
 }
