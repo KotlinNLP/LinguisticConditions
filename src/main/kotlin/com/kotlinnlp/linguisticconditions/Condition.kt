@@ -34,8 +34,8 @@ abstract class Condition {
     private val classesMap = mapOf(
       "count-descendants" to CountDescendants::class,
       "count-direct-descendants" to CountDirectDescendants::class,
-      "syntactic-type" to SyntacticType::class,
-      "syntactic-type-partial" to SyntacticTypePartial::class,
+      "syn" to SyntacticType::class,
+      "syn-partial" to SyntacticTypePartial::class,
       "distance" to Distance::class,
       "morphology" to Morphology::class,
       "pos" to Pos::class,

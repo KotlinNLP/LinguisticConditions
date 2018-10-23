@@ -23,7 +23,7 @@ class SyntacticTypePartial(val value: SyntacticType) : Condition() {
   /**
    * The type of condition.
    */
-  override val type: String = "syntactic-type"
+  override val type: String = "syn-partial"
 
   /**
    * Build a [SyntacticTypePartial] condition from a JSON object.

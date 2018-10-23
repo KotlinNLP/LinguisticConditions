@@ -22,7 +22,7 @@ class SyntacticType(val value: SyntacticType) : Condition() {
   /**
    * The type of condition.
    */
-  override val type: String = "syntactic-type"
+  override val type: String = "syn"
 
   /**
    * Build a [SyntacticType] condition from a JSON object.
