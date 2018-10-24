@@ -56,7 +56,7 @@ abstract class Condition {
       if (jsonObject.keys.size == 0) throw MissingValue()
       if (jsonObject.keys.size > 1) throw TooManyValues()
 
-      val conditionType: String = jsonObject.keys.first()
+      val conditionType: String = jsonObject.keys.single()
 
       return if (conditionType in classesMap)
         constructWithJsonObject(conditionType = conditionType, jsonObject = jsonObject.obj(conditionType)!!)
