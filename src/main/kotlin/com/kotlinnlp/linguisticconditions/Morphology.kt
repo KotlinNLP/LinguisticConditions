@@ -91,16 +91,15 @@ class Morphology(
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     token != null && token.morphologies.single().value.let { morpho ->
-      this.lemma.let { it == null || it == morpho.lemma } &&
-        this.pos.let { it == null || it == morpho.pos } &&
-        this.posPartial.let { it == null || morpho.pos.isComposedBy(it) } &&
-        this.lemma.let { it == null || it == morpho.lemma } &&
-        this.gender.let { it == null || (morpho is Genderable && it == morpho.gender) } &&
-        this.number.let { it == null || (morpho is Numerable && it == morpho.number) } &&
-        this.person.let { it == null || (morpho is PersonDeclinable && it == morpho.person) } &&
-        this.case.let { it == null || (morpho is CaseDeclinable && it == morpho.case) } &&
-        this.degree.let { it == null || (morpho is Gradable && it == morpho.degree) } &&
-        this.mood.let { it == null || (morpho is Conjugable && it == morpho.mood) } &&
-        this.tense.let { it == null || (morpho is Conjugable && it == morpho.tense) }
+      this.lemma?.equals(morpho.lemma) ?: true &&
+        this.pos?.equals(morpho.pos) ?: true &&
+        this.posPartial?.let { morpho.pos.isComposedBy(it) } ?: true &&
+        this.gender?.let { morpho is Genderable && it == morpho.gender } ?: true &&
+        this.number?.let { morpho is Numerable && it == morpho.number } ?: true &&
+        this.person?.let { morpho is PersonDeclinable && it == morpho.person } ?: true &&
+        this.case?.let { morpho is CaseDeclinable && it == morpho.case } ?: true &&
+        this.degree?.let { morpho is Gradable && it == morpho.degree } ?: true &&
+        this.mood?.let { morpho is Conjugable && it == morpho.mood } ?: true &&
+        this.tense?.let { morpho is Conjugable && it == morpho.tense } ?: true
     }
 }
