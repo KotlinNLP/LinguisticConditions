@@ -64,8 +64,8 @@ class Morphology(
    */
   constructor(jsonObject: JsonObject): this(
     lemma = jsonObject.string("lemma"),
-    pos = jsonObject.string("pos")?.let{ POS.valueOf(it) },
-    posPartial = jsonObject.string("pos-partial")?.let{ POS.valueOf(it) },
+    pos = jsonObject.string("pos")?.let { POS.byAnnotation(it) },
+    posPartial = jsonObject.string("pos-partial")?.let { POS.byAnnotation(it) },
     gender = readProperty("gender", jsonObject) as? Gender,
     number = readProperty("number", jsonObject) as? Number,
     person = readProperty("person", jsonObject) as? Person,
