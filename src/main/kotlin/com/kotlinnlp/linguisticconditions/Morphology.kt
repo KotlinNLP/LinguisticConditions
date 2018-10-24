@@ -19,8 +19,8 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * The condition that verifies the morphology of a token.
  *
  * @param lemma the 'lemma' property of the morphology
- * @param pos the 'type' property of the morphology
- * @param posPartial the partial 'type' property of the morphology
+ * @param pos the 'pos' property of the morphology
+ * @param posPartial the partial 'pos' property of the morphology
  * @param number the 'number' property of the morphology
  * @param person the 'person' property of the morphology
  * @param case the 'grammatical case' property of the morphology

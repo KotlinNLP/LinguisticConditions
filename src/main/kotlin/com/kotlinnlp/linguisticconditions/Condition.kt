@@ -38,6 +38,7 @@ abstract class Condition {
       "syn-partial" to SyntacticTypePartial::class,
       "distance" to Distance::class,
       "morphology" to Morphology::class,
+      "morphology-agree" to MorphologyAgree::class,
       "pos" to Pos::class,
       "pos-partial" to PosPartial::class,
       "position" to Position::class,
