@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticconditions
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
@@ -18,7 +19,8 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * The condition that verifies the morphology of a token.
  *
  * @param lemma the 'lemma' property of the morphology
- * @param gender the 'gender' property of the morphology
+ * @param pos the 'type' property of the morphology
+ * @param posPartial the partial 'type' property of the morphology
  * @param number the 'number' property of the morphology
  * @param person the 'person' property of the morphology
  * @param case the 'grammatical case' property of the morphology
@@ -28,6 +30,8 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class Morphology(
   private val lemma: String? = null,
+  private val pos: POS? = null,
+  private val posPartial: POS? = null,
   private val gender: Gender? = null,
   private val number: Number? = null,
   private val person: Person? = null,
@@ -60,6 +64,8 @@ class Morphology(
    */
   constructor(jsonObject: JsonObject): this(
     lemma = jsonObject.string("lemma"),
+    pos = jsonObject.string("pos")?.let{ POS.valueOf(it) },
+    posPartial = jsonObject.string("pos-partial")?.let{ POS.valueOf(it) },
     gender = readProperty("gender", jsonObject) as? Gender,
     number = readProperty("number", jsonObject) as? Number,
     person = readProperty("person", jsonObject) as? Person,
@@ -85,6 +91,9 @@ class Morphology(
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     token != null && token.morphologies.single().value.let { morpho ->
+      this.lemma.let { it == null || it == morpho.lemma } &&
+      this.pos.let { it == null || it == morpho.pos } &&
+      this.posPartial.let { it == null || morpho.pos.isComposedBy(it) } &&
       this.lemma.let { it == null || it == morpho.lemma } &&
         when (morpho) {
           is Genderable -> this.gender.let { it == null || it == morpho.gender }
