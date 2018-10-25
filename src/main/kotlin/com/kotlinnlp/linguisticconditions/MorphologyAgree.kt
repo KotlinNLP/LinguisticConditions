@@ -15,6 +15,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 /**
  * The condition that verifies the morphological agreement of a token with its governor.
  *
+ * @param gender whether to check the agreement of the 'gender' property of the morphology
  * @param number whether to check the agreement of the 'number' property of the morphology
  * @param person whether to check the agreement of the 'person' property of the morphology
  * @param case whether to check the agreement of the 'grammatical case' property of the morphology
@@ -23,14 +24,14 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param tense whether to check the agreement of the 'tense' property of the morphology
  */
 class MorphologyAgree(
-  private val gender: Boolean = false,
-  private val number: Boolean = false,
-  private val person: Boolean = false,
-  private val case: Boolean = false,
-  private val degree: Boolean = false,
-  private val mood: Boolean = false,
-  private val tense: Boolean = false
-) : Condition() {
+  override val gender: Boolean = false,
+  override val number: Boolean = false,
+  override val person: Boolean = false,
+  override val case: Boolean = false,
+  override val degree: Boolean = false,
+  override val mood: Boolean = false,
+  override val tense: Boolean = false
+) : MorphoAgreement, Condition() {
 
   companion object {
 
@@ -77,26 +78,6 @@ class MorphologyAgree(
     val dependentMorpho: SingleMorphology = token.morphologies.single().value
     val governorMorpho: SingleMorphology = governor.morphologies.single().value
 
-    return this.agree(dependentMorpho, governorMorpho)
-  }
-
-  /**
-   * @param dependentMorpho the dependent morphology
-   * @param governorMorpho the governor morphology
-   *
-   * @return true if the dependent agrees with the governor regarding the properties defined in this condition,
-   *         otherwise false
-   */
-  private fun agree(dependentMorpho: SingleMorphology, governorMorpho: SingleMorphology): Boolean {
-
-    if (gender && !dependentMorpho.agreeInGender(governorMorpho)) return false
-    if (number && !dependentMorpho.agreeInNumber(governorMorpho)) return false
-    if (person && !dependentMorpho.agreeInPerson(governorMorpho)) return false
-    if (case && !dependentMorpho.agreeInCase(governorMorpho)) return false
-    if (degree && !dependentMorpho.agreeInDegree(governorMorpho)) return false
-    if (mood && !dependentMorpho.agreeInMood(governorMorpho)) return false
-    if (tense && !dependentMorpho.agreeInTense(governorMorpho)) return false
-
-    return true
+    return this.isVerified(dependentMorpho, governorMorpho)
   }
 }
