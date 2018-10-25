@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  *
  * @param condition the condition to which this operator is applied
  */
-class Not(condition: Condition) : Operator.Single(condition) {
+internal class Not(condition: Condition) : Operator.Single(condition) {
 
   companion object {
 

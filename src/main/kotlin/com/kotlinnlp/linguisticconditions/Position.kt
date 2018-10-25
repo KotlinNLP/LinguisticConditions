@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  *
  * @param index the index of the token within the sentence real tokens
  */
-class Position(private val index: Int) : Condition() {
+internal class Position(private val index: Int) : Condition() {
 
   companion object {
 

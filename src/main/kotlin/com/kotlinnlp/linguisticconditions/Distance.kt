@@ -17,7 +17,7 @@ import kotlin.math.abs
  *
  * @param value the value of the distance
  */
-class Distance(private val value: Int) : Condition() {
+internal class Distance(private val value: Int) : Condition() {
 
   companion object {
 

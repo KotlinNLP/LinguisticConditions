@@ -23,7 +23,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param mood whether to check the agreement of the 'mood' property of the morphology
  * @param tense whether to check the agreement of the 'tense' property of the morphology
  */
-class AgreementWithGovernor(
+internal class AgreementWithGovernor(
   override val gender: Boolean = false,
   override val number: Boolean = false,
   override val person: Boolean = false,

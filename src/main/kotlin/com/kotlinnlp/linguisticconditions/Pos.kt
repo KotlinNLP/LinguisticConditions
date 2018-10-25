@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  *
  * @property value the POS to be verified
  */
-class Pos(val value: POS) : Condition() {
+internal class Pos(val value: POS) : Condition() {
 
   companion object {
 

@@ -18,7 +18,7 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
  *
  * @property value the syntactic type component to be verified
  */
-class SyntacticTypePartial(val value: SyntacticType) : Condition() {
+internal class SyntacticTypePartial(val value: SyntacticType) : Condition() {
 
   companion object {
 

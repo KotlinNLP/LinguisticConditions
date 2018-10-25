@@ -28,7 +28,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param mood the 'mood' property of the morphology
  * @param tense the 'tense' property of the morphology
  */
-class Morphology(
+internal class Morphology(
   private val lemma: String? = null,
   private val pos: POS? = null,
   private val posPartial: POS? = null,

@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  *
  * @param conditions the conditions to which this operator is applied
  */
-class Xor(conditions: List<Condition>) : Operator.Multiple(conditions) {
+internal class Xor(conditions: List<Condition>) : Operator.Multiple(conditions) {
 
   companion object {
 

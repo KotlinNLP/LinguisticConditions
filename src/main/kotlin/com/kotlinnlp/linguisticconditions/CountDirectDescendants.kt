@@ -20,7 +20,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param lowerThan the upper bound (inclusive) of the expected count
  * @param greaterThan the lower bound (inclusive) of the expected count
  */
-class CountDirectDescendants(private val condition: Condition,
+internal class CountDirectDescendants(private val condition: Condition,
                        private val value: Int?,
                        private val lowerThan: Int?,
                        private val greaterThan: Int?) : Condition() {

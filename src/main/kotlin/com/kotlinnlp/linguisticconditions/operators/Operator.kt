@@ -18,7 +18,7 @@ import kotlin.reflect.full.isSubclassOf
 /**
  * The condition that represents an operator to apply to other conditions.
  */
-sealed class Operator : Condition() {
+internal sealed class Operator : Condition() {
 
   /**
    * An [Operator] factory.
