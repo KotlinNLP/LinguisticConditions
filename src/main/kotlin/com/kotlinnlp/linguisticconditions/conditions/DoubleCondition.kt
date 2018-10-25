@@ -55,7 +55,7 @@ internal abstract class DoubleCondition {
 
       for (i in 0 until constructors.size) {
         try {
-          return constructors[i].call(jsonObject)
+          return constructors[i].call(jsonObject.obj(conditionType)!!)
         } catch (e: IllegalArgumentException) {}
       }
 
