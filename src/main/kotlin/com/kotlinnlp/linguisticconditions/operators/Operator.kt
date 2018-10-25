@@ -29,7 +29,7 @@ internal sealed class Operator : Condition() {
     /**
      * The map of operator types to classes.
      */
-    private val classesMap = mapOf(
+    private val classesMap: Map<String, KClass<out Operator>> = mapOf(
       And.ANNOTATION to And::class,
       Or.ANNOTATION to Or::class,
       Xor.ANNOTATION to Xor::class,
@@ -64,7 +64,7 @@ internal sealed class Operator : Condition() {
           Condition(jsonObject.obj(operatorType)!!)
         )
 
-        operatorClass.isSubclassOf(Double::class) -> arrayOf(
+        operatorClass.isSubclassOf(Multiple::class) -> arrayOf(
           jsonObject.array<JsonObject>(operatorType)!!.map { Condition(it) }
         )
 
