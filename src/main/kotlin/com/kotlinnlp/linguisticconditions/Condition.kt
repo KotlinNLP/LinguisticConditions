@@ -13,7 +13,7 @@ import com.kotlinnlp.dependencytree.DependencyTree
 import com.kotlinnlp.linguisticconditions.conditions.agreement.AgreementWithGovernor
 import com.kotlinnlp.linguisticconditions.conditions.count.CountDescendants
 import com.kotlinnlp.linguisticconditions.conditions.count.CountDirectDescendants
-import com.kotlinnlp.linguisticconditions.conditions.distance.Distance
+import com.kotlinnlp.linguisticconditions.conditions.distance.DistanceFromGovernor
 import com.kotlinnlp.linguisticconditions.conditions.morpho.Morphology
 import com.kotlinnlp.linguisticconditions.conditions.morpho.Pos
 import com.kotlinnlp.linguisticconditions.conditions.morpho.PosPartial
@@ -42,7 +42,7 @@ abstract class Condition {
       CountDirectDescendants.ANNOTATION to CountDirectDescendants::class,
       SyntacticType.ANNOTATION to SyntacticType::class,
       SyntacticTypePartial.ANNOTATION to SyntacticTypePartial::class,
-      Distance.ANNOTATION to Distance::class,
+      DistanceFromGovernor.ANNOTATION to DistanceFromGovernor::class,
       Morphology.ANNOTATION to Morphology::class,
       AgreementWithGovernor.ANNOTATION to AgreementWithGovernor::class,
       Pos.ANNOTATION to Pos::class,
