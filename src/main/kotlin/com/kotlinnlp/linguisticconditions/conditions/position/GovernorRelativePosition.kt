@@ -15,7 +15,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 /**
  * The condition that verifies the relative position of a token with its governor.
  *
- * @param positionType the position type (right or left)
+ * @param positionType the position type to verify
  */
 internal class GovernorRelativePosition(
   override val positionType: RelativePosition.Type
