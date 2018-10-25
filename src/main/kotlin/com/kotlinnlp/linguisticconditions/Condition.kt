@@ -33,7 +33,7 @@ abstract class Condition {
       SyntacticTypePartial.ANNOTATION to SyntacticTypePartial::class,
       Distance.ANNOTATION to Distance::class,
       Morphology.ANNOTATION to Morphology::class,
-      MorphologyAgree.ANNOTATION to MorphologyAgree::class,
+      AgreementWithGovernor.ANNOTATION to AgreementWithGovernor::class,
       Pos.ANNOTATION to Pos::class,
       PosPartial.ANNOTATION to PosPartial::class,
       Position.ANNOTATION to Position::class,

@@ -23,7 +23,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param mood whether to check the agreement of the 'mood' property of the morphology
  * @param tense whether to check the agreement of the 'tense' property of the morphology
  */
-class MorphologyAgree(
+class AgreementWithGovernor(
   override val gender: Boolean = false,
   override val number: Boolean = false,
   override val person: Boolean = false,
@@ -38,13 +38,13 @@ class MorphologyAgree(
     /**
      * The annotation of the condition.
      */
-    const val ANNOTATION: String = "morphology-agree"
+    const val ANNOTATION: String = "agreement-with-governor"
   }
 
   /**
-   * Build a [MorphologyAgree] condition from a JSON object.
+   * Build an [AgreementWithGovernor] condition from a JSON object.
    *
-   * @param jsonObject the JSON object that represents a [MorphologyAgree] condition
+   * @param jsonObject the JSON object that represents an [AgreementWithGovernor] condition
    *
    * @return a new condition interpreted from the given [jsonObject]
    */
