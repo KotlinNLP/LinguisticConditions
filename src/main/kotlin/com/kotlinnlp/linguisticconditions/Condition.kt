@@ -37,7 +37,7 @@ abstract class Condition {
       Pos.ANNOTATION to Pos::class,
       PosPartial.ANNOTATION to PosPartial::class,
       Position.ANNOTATION to Position::class,
-      RelativePosition.ANNOTATION to RelativePosition::class
+      GovernorRelativePosition.ANNOTATION to GovernorRelativePosition::class
     )
 
     /**

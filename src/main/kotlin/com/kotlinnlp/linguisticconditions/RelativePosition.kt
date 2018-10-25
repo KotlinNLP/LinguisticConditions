@@ -7,24 +7,12 @@
 
 package com.kotlinnlp.linguisticconditions
 
-import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
-import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
- * The condition that verifies the relative position of a token with its governor.
- *
- * @param positionType the position type (right or left)
+ * Verify the relative position of two tokens.
  */
-class RelativePosition(private val positionType: Type) : Condition() {
-
-  companion object {
-
-    /**
-     * The annotation of the condition.
-     */
-    const val ANNOTATION: String = "relative-position"
-  }
+internal interface RelativePosition {
 
   /**
    * The position type.
@@ -32,33 +20,21 @@ class RelativePosition(private val positionType: Type) : Condition() {
   enum class Type { Top, Right, Left }
 
   /**
-   * Build a [RelativePosition] condition from a JSON object.
-   *
-   * @param jsonObject the JSON object that represents a [RelativePosition] condition
-   *
-   * @return a new condition interpreted from the given [jsonObject]
+   * The position type to verify.
    */
-  constructor(jsonObject: JsonObject) : this(Type.valueOf(jsonObject.string("type")!!))
+  val positionType: Type
 
   /**
-   * @param token a token or null if called on the virtual root
-   * @param tokens the list of all the tokens that compose the sentence
-   * @param dependencyTree the dependency tree of the token sentence
+   * @param tokenId the id of a token
+   * @param refId the id of the reference token (can be null if it represents the root)
+   * @param dependencyTree the dependency tree of the tokens sentence
    *
-   * @return a boolean indicating if this condition is verified for the given [token]
+   * @return true if the relative position of the given token has the defined [positionType] respect to the reference
    */
-  override fun isVerified(token: MorphoSynToken.Single?,
-                          tokens: List<MorphoSynToken.Single>,
-                          dependencyTree: DependencyTree): Boolean {
-
-    if (token == null) return false
-
-    val headId: Int? = dependencyTree.getHead(token.id)
-
-    return when (this.positionType) {
-      Type.Top -> headId == null
-      Type.Left -> headId != null && dependencyTree.getPosition(token.id) < dependencyTree.getPosition(headId)
-      Type.Right -> headId != null && dependencyTree.getPosition(token.id) > dependencyTree.getPosition(headId)
+  fun isVerified(tokenId: Int, refId: Int?, dependencyTree: DependencyTree): Boolean =
+    when (this.positionType) {
+      Type.Top -> refId == null
+      Type.Left -> refId != null && dependencyTree.getPosition(tokenId) < dependencyTree.getPosition(refId)
+      Type.Right -> refId != null && dependencyTree.getPosition(tokenId) > dependencyTree.getPosition(refId)
     }
-  }
 }
