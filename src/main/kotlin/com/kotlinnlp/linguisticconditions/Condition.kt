@@ -22,6 +22,7 @@ import com.kotlinnlp.linguisticconditions.conditions.position.Position
 import com.kotlinnlp.linguisticconditions.conditions.syntax.SyntacticType
 import com.kotlinnlp.linguisticconditions.conditions.syntax.SyntacticTypePartial
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
+import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 
 /**
@@ -37,7 +38,7 @@ abstract class Condition {
     /**
      * The map of condition types to classes.
      */
-    private val classesMap = mapOf(
+    private val classesMap: Map<String, KClass<out Condition>> = mapOf(
       CountDescendants.ANNOTATION to CountDescendants::class,
       CountDirectDescendants.ANNOTATION to CountDirectDescendants::class,
       SyntacticType.ANNOTATION to SyntacticType::class,
