@@ -20,10 +20,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class PosPartial(val value: POS) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "pos-partial"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "pos-partial"
+  }
 
   /**
    * Build a [PosPartial] condition from a JSON object.

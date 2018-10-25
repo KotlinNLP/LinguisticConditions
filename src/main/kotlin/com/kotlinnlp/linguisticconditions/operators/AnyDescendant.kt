@@ -19,10 +19,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class AnyDescendant(condition: Condition) : Operator.Single(condition) {
 
-  /**
-   * The type of operator.
-   */
-  override val type: String = "any-descendant"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "any-descendant"
+  }
 
   /**
    * @param token a token or null if called on the virtual root

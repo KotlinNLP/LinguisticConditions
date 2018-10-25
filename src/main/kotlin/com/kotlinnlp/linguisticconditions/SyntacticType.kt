@@ -19,10 +19,13 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
  */
 class SyntacticType(val value: SyntacticType) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "syn"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "syn"
+  }
 
   /**
    * Build a [SyntacticType] condition from a JSON object.

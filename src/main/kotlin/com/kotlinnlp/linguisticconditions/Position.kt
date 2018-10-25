@@ -18,10 +18,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class Position(private val index: Int) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "position"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "position"
+  }
 
   /**
    * Build a [Position] condition from a JSON object.

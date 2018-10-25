@@ -25,10 +25,13 @@ class CountDescendants(private val condition: Condition,
                        private val lowerThan: Int?,
                        private val greaterThan: Int?) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "count-descendants"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "count-descendants"
+  }
 
   /**
    * Build a [CountDescendants] condition from a JSON object.

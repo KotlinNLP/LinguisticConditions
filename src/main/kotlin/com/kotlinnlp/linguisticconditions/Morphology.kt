@@ -44,6 +44,11 @@ class Morphology(
   companion object {
 
     /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "morphology"
+
+    /**
      * Read a morphology property from a JSON object.
      *
      * @param name the name of the property
@@ -74,11 +79,6 @@ class Morphology(
     mood = readProperty("mood", jsonObject) as? Mood,
     tense = readProperty("tense", jsonObject) as? Tense
   )
-
-  /**
-   * The type of condition.
-   */
-  override val type: String = "morphology"
 
   /**
    * @param token a token or null if called on the virtual root

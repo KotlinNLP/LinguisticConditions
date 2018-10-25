@@ -29,14 +29,14 @@ sealed class Operator : Condition() {
      * The map of operator types to classes.
      */
     private val classesMap = mapOf(
-      "and" to And::class,
-      "or" to Or::class,
-      "xor" to Xor::class,
-      "not" to Not::class,
-      "all-descendants" to AllDescendants::class,
-      "any-descendant" to AnyDescendant::class,
-      "any-direct-descendant" to AnyDirectDescendant::class,
-      "all-direct-descendant" to AllDirectDescendants::class
+      And.ANNOTATION to And::class,
+      Or.ANNOTATION to Or::class,
+      Xor.ANNOTATION to Xor::class,
+      Not.ANNOTATION to Not::class,
+      AllDescendants.ANNOTATION to AllDescendants::class,
+      AnyDescendant.ANNOTATION to AnyDescendant::class,
+      AnyDirectDescendant.ANNOTATION to AnyDirectDescendant::class,
+      AllDirectDescendants.ANNOTATION to AllDirectDescendants::class
     )
 
     /**

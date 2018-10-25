@@ -18,10 +18,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class And(conditions: List<Condition>) : Operator.Multiple(conditions) {
 
-  /**
-   * The type of operator.
-   */
-  override val type: String = "and"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "and"
+  }
 
   /**
    * @param token a token or null if called on the virtual root

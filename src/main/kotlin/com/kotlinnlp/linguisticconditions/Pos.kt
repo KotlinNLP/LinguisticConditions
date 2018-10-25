@@ -20,10 +20,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class Pos(val value: POS) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "pos"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "pos"
+  }
 
   /**
    * Build a [Pos] condition from a JSON object.

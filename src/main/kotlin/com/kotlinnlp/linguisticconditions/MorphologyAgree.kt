@@ -32,6 +32,14 @@ class MorphologyAgree(
   private val tense: Boolean = false
 ) : Condition() {
 
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "morphology-agree"
+  }
+
   /**
    * Build a [MorphologyAgree] condition from a JSON object.
    *
@@ -48,11 +56,6 @@ class MorphologyAgree(
     mood = jsonObject.array<String>("properties")!!.contains("mood"),
     tense = jsonObject.array<String>("properties")!!.contains("tense")
   )
-
-  /**
-   * The type of condition.
-   */
-  override val type: String = "morphology-agree"
 
   /**
    * @param token a token or null if called on the virtual root

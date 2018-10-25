@@ -20,10 +20,13 @@ import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
  */
 class SyntacticTypePartial(val value: SyntacticType) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "syn-partial"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "syn-partial"
+  }
 
   /**
    * Build a [SyntacticTypePartial] condition from a JSON object.

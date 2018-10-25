@@ -19,10 +19,13 @@ import kotlin.math.abs
  */
 class Distance(private val value: Int) : Condition() {
 
-  /**
-   * The type of condition.
-   */
-  override val type: String = "distance"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "distance"
+  }
 
   /**
    * Build a [Distance] condition from a JSON object.

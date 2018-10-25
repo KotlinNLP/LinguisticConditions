@@ -18,10 +18,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class Or(conditions: List<Condition>) : Operator.Multiple(conditions) {
 
-  /**
-   * The type of operator.
-   */
-  override val type: String = "or"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "or"
+  }
 
   /**
    * @param token a token or null if called on the virtual root

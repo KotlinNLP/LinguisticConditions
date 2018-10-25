@@ -19,11 +19,6 @@ import kotlin.reflect.KFunction
 abstract class Condition {
 
   /**
-   * The type of condition.
-   */
-  abstract val type: String
-
-  /**
    * A [Condition] factory.
    */
   companion object Factory {
@@ -32,17 +27,17 @@ abstract class Condition {
      * The map of condition types to classes.
      */
     private val classesMap = mapOf(
-      "count-descendants" to CountDescendants::class,
-      "count-direct-descendants" to CountDirectDescendants::class,
-      "syn" to SyntacticType::class,
-      "syn-partial" to SyntacticTypePartial::class,
-      "distance" to Distance::class,
-      "morphology" to Morphology::class,
-      "morphology-agree" to MorphologyAgree::class,
-      "pos" to Pos::class,
-      "pos-partial" to PosPartial::class,
-      "position" to Position::class,
-      "relative-position" to RelativePosition::class
+      CountDescendants.ANNOTATION to CountDescendants::class,
+      CountDirectDescendants.ANNOTATION to CountDirectDescendants::class,
+      SyntacticType.ANNOTATION to SyntacticType::class,
+      SyntacticTypePartial.ANNOTATION to SyntacticTypePartial::class,
+      Distance.ANNOTATION to Distance::class,
+      Morphology.ANNOTATION to Morphology::class,
+      MorphologyAgree.ANNOTATION to MorphologyAgree::class,
+      Pos.ANNOTATION to Pos::class,
+      PosPartial.ANNOTATION to PosPartial::class,
+      Position.ANNOTATION to Position::class,
+      RelativePosition.ANNOTATION to RelativePosition::class
     )
 
     /**

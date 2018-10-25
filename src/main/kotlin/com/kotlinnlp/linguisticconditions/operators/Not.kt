@@ -18,10 +18,13 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class Not(condition: Condition) : Operator.Single(condition) {
 
-  /**
-   * The type of operator.
-   */
-  override val type: String = "not"
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "not"
+  }
 
   /**
    * @param token a token or null if called on the virtual root

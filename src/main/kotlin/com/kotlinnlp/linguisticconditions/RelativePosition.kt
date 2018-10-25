@@ -18,15 +18,18 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 class RelativePosition(private val positionType: Type) : Condition() {
 
+  companion object {
+
+    /**
+     * The annotation of the condition.
+     */
+    const val ANNOTATION: String = "relative-position"
+  }
+
   /**
    * The position type.
    */
   enum class Type { Top, Right, Left }
-
-  /**
-   * The type of condition.
-   */
-  override val type: String = "relative-position"
 
   /**
    * Build a [RelativePosition] condition from a JSON object.
