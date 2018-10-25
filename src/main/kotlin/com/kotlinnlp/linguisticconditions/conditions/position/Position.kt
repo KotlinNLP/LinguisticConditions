@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
- * The condition that verifies the position of a token.
+ * The condition that verifies the absolute position of a token in the tokens list.
  *
  * @param index the index of the token within the sentence real tokens
  */
