@@ -38,7 +38,9 @@ internal sealed class Operator : Condition() {
       AnyDescendant.ANNOTATION to AnyDescendant::class,
       AnyDirectDescendant.ANNOTATION to AnyDirectDescendant::class,
       AllDirectDescendants.ANNOTATION to AllDirectDescendants::class,
-      MatchDirectDescendants.ANNOTATION to MatchDirectDescendants::class
+      MatchDirectDescendants.ANNOTATION to MatchDirectDescendants::class,
+      AllAncestors.ANNOTATION to AllAncestors::class,
+      AnyAncestor.ANNOTATION to AnyAncestor::class
     )
 
     /**
