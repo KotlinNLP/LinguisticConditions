@@ -12,6 +12,7 @@ import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticconditions.InvalidOperatorType
 import com.kotlinnlp.linguisticconditions.MissingValue
 import com.kotlinnlp.linguisticconditions.TooManyValues
+import com.kotlinnlp.linguisticconditions.conditions.DoubleCondition
 import kotlin.reflect.KClass
 import kotlin.reflect.full.isSubclassOf
 
@@ -36,7 +37,8 @@ internal sealed class Operator : Condition() {
       AllDescendants.ANNOTATION to AllDescendants::class,
       AnyDescendant.ANNOTATION to AnyDescendant::class,
       AnyDirectDescendant.ANNOTATION to AnyDirectDescendant::class,
-      AllDirectDescendants.ANNOTATION to AllDirectDescendants::class
+      AllDirectDescendants.ANNOTATION to AllDirectDescendants::class,
+      MatchDirectDescendants.ANNOTATION to MatchDirectDescendants::class
     )
 
     /**
@@ -52,27 +54,56 @@ internal sealed class Operator : Condition() {
       if (jsonObject.keys.size > 1) throw TooManyValues()
 
       val operatorType: String = jsonObject.keys.first()
+      val operatorClass: KClass<out Operator> = classesMap[operatorType] ?: throw InvalidOperatorType(operatorType)
 
-      if (operatorType !in classesMap) throw InvalidOperatorType(operatorType)
+      val args: Array<*> = when {
 
-      val operatorClass: KClass<out Operator> = classesMap.getValue(operatorType)
-
-      return operatorClass.constructors.first().call(
-        if (operatorClass.isSubclassOf(Single::class))
+        operatorClass.isSubclassOf(Single::class) -> arrayOf(
           Condition(jsonObject.obj(operatorType)!!)
-        else
+        )
+
+        operatorClass.isSubclassOf(Double::class) -> arrayOf(
           jsonObject.array<JsonObject>(operatorType)!!.map { Condition(it) }
-      )
+        )
+
+        else -> jsonObject.obj(operatorType)!!.let {
+          arrayOf(
+            Condition(it.obj("target")!!),
+            Condition(it.obj("reference")!!),
+            DoubleCondition(it.obj("condition")!!)
+          )
+        }
+      }
+
+      return operatorClass.constructors.first().call(*args)
     }
   }
 
   /**
-   * @property condition the condition to which this operator is applied
+   * An operator that verifies a single condition on a token.
+   *
+   * @param condition the condition to which this operator is applied
    */
-  abstract class Single(val condition: Condition) : Operator()
+  abstract class Single(protected val condition: Condition) : Operator()
 
   /**
-   * @property conditions the conditions to which this operator is applied
+   * An operator that verifies more conditions on a token.
+   *
+   * @param conditions the conditions to which this operator is applied
    */
-  abstract class Multiple(val conditions: List<Condition>) : Operator()
+  abstract class Multiple(protected val conditions: List<Condition>) : Operator()
+
+  /**
+   * An operator that verifies a double condition on pairs of target-reference tokens, extracted with a target and a
+   * reference conditions.
+   *
+   * @param target the condition to match the target tokens
+   * @param reference the condition to match the reference tokens
+   * @param condition the double condition to verify on all the pairs of target-reference tokens
+   */
+  abstract class Match(
+    protected val target: Condition,
+    protected val reference: Condition,
+    protected val condition: DoubleCondition
+  ) : Operator()
 }
