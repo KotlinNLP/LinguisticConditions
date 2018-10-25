@@ -51,18 +51,9 @@ internal class GovernorRelativePosition(
 
     if (token == null) return false
 
-    val headId: Int? = dependencyTree.getHead(token.id)
-
-    return when (this.positionType) {
-
-      RelativePosition.Type.Top ->
-        headId == null
-
-      RelativePosition.Type.Left ->
-        headId != null && dependencyTree.getPosition(token.id) < dependencyTree.getPosition(headId)
-
-      RelativePosition.Type.Right ->
-        headId != null && dependencyTree.getPosition(token.id) > dependencyTree.getPosition(headId)
-    }
+    return this.isVerified(
+      tokenId = token.id,
+      refId = dependencyTree.getHead(token.id),
+      dependencyTree = dependencyTree)
   }
 }
