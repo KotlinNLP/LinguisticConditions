@@ -5,10 +5,11 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticconditions
+package com.kotlinnlp.linguisticconditions.conditions.position
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**

@@ -5,36 +5,36 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticconditions
+package com.kotlinnlp.linguisticconditions.conditions.position
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
-import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
- * The condition that verifies a component of a syntactic type of a token.
+ * The condition that verifies the position of a token.
  *
- * @property value the syntactic type to be verified
+ * @param index the index of the token within the sentence real tokens
  */
-internal class SyntacticType(val value: SyntacticType) : Condition() {
+internal class Position(private val index: Int) : Condition() {
 
   companion object {
 
     /**
      * The annotation of the condition.
      */
-    const val ANNOTATION: String = "syn"
+    const val ANNOTATION: String = "position"
   }
 
   /**
-   * Build a [SyntacticType] condition from a JSON object.
+   * Build a [Position] condition from a JSON object.
    *
-   * @param jsonObject the JSON object that represents a [SyntacticType] condition
+   * @param jsonObject the JSON object that represents a [Position] condition
    *
    * @return a new condition interpreted from the given [jsonObject]
    */
-  constructor(jsonObject: JsonObject): this(SyntacticType.byAnnotation(jsonObject.string("value")!!))
+  constructor(jsonObject: JsonObject) : this(jsonObject.int("index")!!)
 
   /**
    * @param token a token or null if called on the virtual root
@@ -46,5 +46,5 @@ internal class SyntacticType(val value: SyntacticType) : Condition() {
   override fun isVerified(token: MorphoSynToken.Single?,
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
-    token != null && token.syntacticRelation.dependency.type == this.value
+    token != null && dependencyTree.getPosition(token.id) == this.index
 }

@@ -5,7 +5,7 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticconditions
+package com.kotlinnlp.linguisticconditions.conditions.position
 
 import com.kotlinnlp.dependencytree.DependencyTree
 

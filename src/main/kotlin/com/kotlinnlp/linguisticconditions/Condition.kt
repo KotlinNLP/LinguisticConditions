@@ -10,6 +10,17 @@ package com.kotlinnlp.linguisticconditions
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticconditions.operators.Operator
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticconditions.conditions.agreement.AgreementWithGovernor
+import com.kotlinnlp.linguisticconditions.conditions.count.CountDescendants
+import com.kotlinnlp.linguisticconditions.conditions.count.CountDirectDescendants
+import com.kotlinnlp.linguisticconditions.conditions.distance.Distance
+import com.kotlinnlp.linguisticconditions.conditions.morpho.Morphology
+import com.kotlinnlp.linguisticconditions.conditions.morpho.Pos
+import com.kotlinnlp.linguisticconditions.conditions.morpho.PosPartial
+import com.kotlinnlp.linguisticconditions.conditions.position.GovernorRelativePosition
+import com.kotlinnlp.linguisticconditions.conditions.position.Position
+import com.kotlinnlp.linguisticconditions.conditions.syntax.SyntacticType
+import com.kotlinnlp.linguisticconditions.conditions.syntax.SyntacticTypePartial
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 import kotlin.reflect.KFunction
 

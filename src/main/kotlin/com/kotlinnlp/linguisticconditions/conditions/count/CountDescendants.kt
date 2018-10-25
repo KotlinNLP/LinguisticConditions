@@ -5,10 +5,11 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticconditions
+package com.kotlinnlp.linguisticconditions.conditions.count
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
@@ -21,9 +22,9 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param greaterThan the lower bound (inclusive) of the expected count
  */
 internal class CountDescendants(private val condition: Condition,
-                       private val value: Int?,
-                       private val lowerThan: Int?,
-                       private val greaterThan: Int?) : Condition() {
+                                private val value: Int?,
+                                private val lowerThan: Int?,
+                                private val greaterThan: Int?) : Condition() {
 
   companion object {
 

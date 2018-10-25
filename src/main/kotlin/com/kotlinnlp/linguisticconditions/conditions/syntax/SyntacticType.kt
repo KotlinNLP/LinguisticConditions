@@ -5,37 +5,37 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticconditions
+package com.kotlinnlp.linguisticconditions.conditions.syntax
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
-import com.kotlinnlp.linguisticdescription.POSTag
-import com.kotlinnlp.linguisticdescription.morphology.POS
+import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
+import com.kotlinnlp.linguisticdescription.syntax.SyntacticType
 
 /**
- * The condition that verifies the part-of-speech (POS) of a token.
+ * The condition that verifies a component of a syntactic type of a token.
  *
- * @property value the POS to be verified
+ * @property value the syntactic type to be verified
  */
-internal class Pos(val value: POS) : Condition() {
+internal class SyntacticType(val value: SyntacticType) : Condition() {
 
   companion object {
 
     /**
      * The annotation of the condition.
      */
-    const val ANNOTATION: String = "pos"
+    const val ANNOTATION: String = "syn"
   }
 
   /**
-   * Build a [Pos] condition from a JSON object.
+   * Build a [SyntacticType] condition from a JSON object.
    *
-   * @param jsonObject the JSON object that represents a [Pos] condition
+   * @param jsonObject the JSON object that represents a [SyntacticType] condition
    *
    * @return a new condition interpreted from the given [jsonObject]
    */
-  constructor(jsonObject: JsonObject): this(POS.byAnnotation(jsonObject.string("value")!!))
+  constructor(jsonObject: JsonObject): this(SyntacticType.byAnnotation(jsonObject.string("value")!!))
 
   /**
    * @param token a token or null if called on the virtual root
@@ -47,5 +47,5 @@ internal class Pos(val value: POS) : Condition() {
   override fun isVerified(token: MorphoSynToken.Single?,
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
-    token != null && (token.pos as POSTag.Base).type == this.value
+    token != null && token.syntacticRelation.dependency.type == this.value
 }

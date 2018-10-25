@@ -5,35 +5,38 @@
  * file, you can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.linguisticconditions
+package com.kotlinnlp.linguisticconditions.conditions.morpho
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticconditions.Condition
+import com.kotlinnlp.linguisticdescription.POSTag
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
- * The condition that verifies the position of a token.
+ * The condition that verifies a component of a part-of-speech (POS) of a token.
  *
- * @param index the index of the token within the sentence real tokens
+ * @property value the POS component to be verified
  */
-internal class Position(private val index: Int) : Condition() {
+internal class PosPartial(val value: POS) : Condition() {
 
   companion object {
 
     /**
      * The annotation of the condition.
      */
-    const val ANNOTATION: String = "position"
+    const val ANNOTATION: String = "pos-partial"
   }
 
   /**
-   * Build a [Position] condition from a JSON object.
+   * Build a [PosPartial] condition from a JSON object.
    *
-   * @param jsonObject the JSON object that represents a [Position] condition
+   * @param jsonObject the JSON object that represents a [PosPartial] condition
    *
    * @return a new condition interpreted from the given [jsonObject]
    */
-  constructor(jsonObject: JsonObject) : this(jsonObject.int("index")!!)
+  constructor(jsonObject: JsonObject): this(POS.byAnnotation(jsonObject.string("value")!!))
 
   /**
    * @param token a token or null if called on the virtual root
@@ -45,5 +48,5 @@ internal class Position(private val index: Int) : Condition() {
   override fun isVerified(token: MorphoSynToken.Single?,
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
-    token != null && dependencyTree.getPosition(token.id) == this.index
+    token != null && (token.pos as POSTag.Base).type.isComposedBy(this.value)
 }
