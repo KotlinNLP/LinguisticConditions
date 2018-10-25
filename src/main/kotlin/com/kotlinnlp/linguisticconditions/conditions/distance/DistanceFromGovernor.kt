@@ -47,5 +47,5 @@ internal class DistanceFromGovernor(override val value: Int) : Distance, Conditi
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
     token != null &&
-      this.isVerified(tokenId = token.id, refId = dependencyTree.getHead(token.id), dependencyTree = dependencyTree)
+      this.isVerified(targetId = token.id, refId = dependencyTree.getHead(token.id), dependencyTree = dependencyTree)
 }

@@ -21,12 +21,12 @@ internal interface Distance {
   val value: Int
 
   /**
-   * @param tokenId the id of a token
+   * @param targetId the id of the target token
    * @param refId the id of the reference token (can be null if it represents the root)
    * @param dependencyTree the dependency tree of the tokens sentence
    *
-   * @return true if the distance of the token from the reference is equal to the defined [value]
+   * @return true if the distance of the target token from the reference is equal to the defined [value]
    */
-  fun isVerified(tokenId: Int, refId: Int?, dependencyTree: DependencyTree): Boolean =
-    refId != null && abs(dependencyTree.getPosition(tokenId) - dependencyTree.getPosition(refId)) == this.value
+  fun isVerified(targetId: Int, refId: Int?, dependencyTree: DependencyTree): Boolean =
+    refId != null && abs(dependencyTree.getPosition(targetId) - dependencyTree.getPosition(refId)) == this.value
 }
