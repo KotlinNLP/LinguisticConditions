@@ -13,7 +13,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
  * The 'all-direct-descendants' operator.
- * It verifies that all the direct descendants of a given token that verify the [condition].
+ * It verifies that all the direct descendants of a given token verify the [condition].
  *
  * @param condition the condition to which this operator is applied
  */
