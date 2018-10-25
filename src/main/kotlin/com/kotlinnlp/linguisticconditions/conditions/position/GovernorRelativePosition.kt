@@ -52,7 +52,7 @@ internal class GovernorRelativePosition(
     if (token == null) return false
 
     return this.isVerified(
-      tokenId = token.id,
+      targetId = token.id,
       refId = dependencyTree.getHead(token.id),
       dependencyTree = dependencyTree)
   }
