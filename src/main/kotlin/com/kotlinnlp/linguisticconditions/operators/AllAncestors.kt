@@ -40,13 +40,18 @@ internal class AllAncestors(condition: Condition) : Operator.Single(condition) {
 
     if (token == null) return false
 
-    val ancestorsIds: List<Int> = getAncestorsIds(tokenId = token.id, dependencyTree = dependencyTree)
+    var verified = true
 
-    return ancestorsIds.all {
-      this.condition.isVerified(
-        token = tokens[dependencyTree.getPosition(it)],
-        tokens = tokens,
-        dependencyTree = dependencyTree)
+    dependencyTree.forEachAncestor(token.id) {
+
+      val ancestor: MorphoSynToken.Single = tokens[dependencyTree.getPosition(it)]
+
+      if (!this.condition.isVerified(token = ancestor, tokens = tokens, dependencyTree = dependencyTree)) {
+        verified = false
+        return@forEachAncestor
+      }
     }
+
+    return verified
   }
 }
