@@ -15,6 +15,11 @@ import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 internal interface MorphoAgreement {
 
   /**
+   * Whether to check the agreement of the 'lemma' property of the morphology.
+   */
+  val lemma: Boolean
+
+  /**
    * Whether to check the agreement of the 'gender' property of the morphology.
    */
   val gender: Boolean
@@ -57,6 +62,7 @@ internal interface MorphoAgreement {
    */
   fun isVerified(morphoA: SingleMorphology, morphoB: SingleMorphology): Boolean {
 
+    if (lemma && morphoA.lemma != morphoB.lemma) return false
     if (gender && !morphoA.agreeInGender(morphoB)) return false
     if (number && !morphoA.agreeInNumber(morphoB)) return false
     if (person && !morphoA.agreeInPerson(morphoB)) return false

@@ -15,6 +15,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 /**
  * The condition that verifies the morphological agreement between two tokens.
  *
+ * @param lemma whether to check the agreement of the 'lemma' property of the morphology
  * @param gender whether to check the agreement of the 'gender' property of the morphology
  * @param number whether to check the agreement of the 'number' property of the morphology
  * @param person whether to check the agreement of the 'person' property of the morphology
@@ -24,6 +25,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param tense whether to check the agreement of the 'tense' property of the morphology
  */
 internal class TokensAgreement(
+  override val lemma: Boolean = false,
   override val gender: Boolean = false,
   override val number: Boolean = false,
   override val person: Boolean = false,
@@ -49,6 +51,7 @@ internal class TokensAgreement(
    * @return a new condition interpreted from the given [jsonObject]
    */
   constructor(jsonObject: JsonObject) : this(
+    lemma = jsonObject.array<String>("properties")!!.contains("lemma"),
     gender = jsonObject.array<String>("properties")!!.contains("gender"),
     number = jsonObject.array<String>("properties")!!.contains("number"),
     person = jsonObject.array<String>("properties")!!.contains("person"),
