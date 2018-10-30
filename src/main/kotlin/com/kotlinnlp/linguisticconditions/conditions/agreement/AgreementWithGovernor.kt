@@ -17,6 +17,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * The condition that verifies the morphological agreement of a token with its governor.
  *
  * @param lemma whether to check the agreement of the 'lemma' property of the morphology
+ * @param pos whether to check the agreement of the 'pos' property of the morphology
  * @param gender whether to check the agreement of the 'gender' property of the morphology
  * @param number whether to check the agreement of the 'number' property of the morphology
  * @param person whether to check the agreement of the 'person' property of the morphology
@@ -27,6 +28,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  */
 internal class AgreementWithGovernor(
   override val lemma: Boolean = false,
+  override val pos: Boolean = false,
   override val gender: Boolean = false,
   override val number: Boolean = false,
   override val person: Boolean = false,
@@ -53,6 +55,7 @@ internal class AgreementWithGovernor(
    */
   constructor(jsonObject: JsonObject): this(
     lemma = jsonObject.array<String>("properties")!!.contains("lemma"),
+    pos = jsonObject.array<String>("properties")!!.contains("pos"),
     gender = jsonObject.array<String>("properties")!!.contains("gender"),
     number = jsonObject.array<String>("properties")!!.contains("number"),
     person = jsonObject.array<String>("properties")!!.contains("person"),
