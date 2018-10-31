@@ -8,11 +8,17 @@
 package com.kotlinnlp.linguisticconditions.conditions.agreement
 
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
+import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
  * Verify the morphological agreement between two morphologies.
  */
 internal interface MorphoAgreement {
+
+  /**
+   * Whether to check the agreement looking at the context morphology.
+   */
+  val checkContext: Boolean
 
   /**
    * Whether to check the agreement of the 'lemma' property of the morphology.
@@ -60,12 +66,15 @@ internal interface MorphoAgreement {
   val tense: Boolean
 
   /**
-   * @param morphoA a single morphology
-   * @param morphoB a single morphology
+   * @param tokenA a single morpho-syntactic token
+   * @param tokenB a single morpho-syntactic token
    *
    * @return true if the given morphologies agree regarding the properties enabled, otherwise false
    */
-  fun isVerified(morphoA: SingleMorphology, morphoB: SingleMorphology): Boolean {
+  fun isVerified(tokenA: MorphoSynToken.Single, tokenB: MorphoSynToken.Single): Boolean {
+
+    val morphoA: SingleMorphology = this.getMorphology(tokenA)
+    val morphoB: SingleMorphology = this.getMorphology(tokenB)
 
     if (lemma && morphoA.lemma != morphoB.lemma) return false
     if (pos && morphoA.pos != morphoB.pos) return false
@@ -79,4 +88,15 @@ internal interface MorphoAgreement {
 
     return true
   }
+
+  /**
+   * @param token a single morpho-syntactic token
+   *
+   * @return the morphology of the token on which to check the agreement
+   */
+  private fun getMorphology(token: MorphoSynToken.Single): SingleMorphology =
+    if (this.checkContext)
+      token.contextMorphologies.single().value
+    else
+      token.morphologies.single().value
 }

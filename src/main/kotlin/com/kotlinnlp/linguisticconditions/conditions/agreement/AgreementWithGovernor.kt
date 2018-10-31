@@ -10,12 +10,12 @@ package com.kotlinnlp.linguisticconditions.conditions.agreement
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
 import com.kotlinnlp.linguisticconditions.Condition
-import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
  * The condition that verifies the morphological agreement of a token with its governor.
  *
+ * @param checkContext whether to check the agreement looking at the context morphology
  * @param lemma whether to check the agreement of the 'lemma' property of the morphology
  * @param pos whether to check the agreement of the 'pos' property of the morphology
  * @param gender whether to check the agreement of the 'gender' property of the morphology
@@ -27,6 +27,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param tense whether to check the agreement of the 'tense' property of the morphology
  */
 internal class AgreementWithGovernor(
+  override val checkContext: Boolean = false,
   override val lemma: Boolean = false,
   override val pos: Boolean = false,
   override val gender: Boolean = false,
@@ -54,6 +55,7 @@ internal class AgreementWithGovernor(
    * @return a new condition interpreted from the given [jsonObject]
    */
   constructor(jsonObject: JsonObject): this(
+    checkContext = jsonObject.boolean("context") ?: false,
     lemma = jsonObject.array<String>("properties")!!.contains("lemma"),
     pos = jsonObject.array<String>("properties")!!.contains("pos"),
     gender = jsonObject.array<String>("properties")!!.contains("gender"),
@@ -79,12 +81,8 @@ internal class AgreementWithGovernor(
     if (token == null) return false
 
     val governorId: Int = dependencyTree.getHead(token.id) ?: return false
-
     val governor: MorphoSynToken.Single = tokens[dependencyTree.getPosition(governorId)]
 
-    val dependentMorpho: SingleMorphology = token.morphologies.single().value
-    val governorMorpho: SingleMorphology = governor.morphologies.single().value
-
-    return this.isVerified(dependentMorpho, governorMorpho)
+    return this.isVerified(token, governor)
   }
 }
