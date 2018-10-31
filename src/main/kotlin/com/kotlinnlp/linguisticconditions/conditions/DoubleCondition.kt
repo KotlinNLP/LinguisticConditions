@@ -9,6 +9,7 @@ package com.kotlinnlp.linguisticconditions.conditions
 
 import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
+import com.kotlinnlp.linguisticconditions.ContextCheck
 import com.kotlinnlp.linguisticconditions.MissingJSONConstructor
 import com.kotlinnlp.linguisticconditions.MissingValue
 import com.kotlinnlp.linguisticconditions.TooManyValues
@@ -22,7 +23,7 @@ import kotlin.reflect.KFunction
 /**
  * A condition that can be verified on two morpho-syntactic tokens.
  */
-internal abstract class DoubleCondition {
+internal abstract class DoubleCondition : ContextCheck {
 
   /**
    * A [DoubleCondition] factory.
