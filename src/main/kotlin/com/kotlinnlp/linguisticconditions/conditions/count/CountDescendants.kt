@@ -48,6 +48,11 @@ internal class CountDescendants(private val condition: Condition,
     greaterThan = jsonObject.int("greaterThan"))
 
   /**
+   * Whether this condition needs to look at the context morphology.
+   */
+  override val checkContext: Boolean = this.condition.checkContext
+
+  /**
    * Check requirements.
    */
   init {

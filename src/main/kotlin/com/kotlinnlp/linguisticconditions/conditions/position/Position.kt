@@ -37,6 +37,11 @@ internal class Position(private val index: Int) : Condition() {
   constructor(jsonObject: JsonObject) : this(jsonObject.int("index")!!)
 
   /**
+   * Whether this condition needs to look at the context morphology.
+   */
+  override val checkContext: Boolean = false
+
+  /**
    * @param token a token or null if called on the virtual root
    * @param tokens the list of all the tokens that compose the sentence
    * @param dependencyTree the dependency tree of the token sentence

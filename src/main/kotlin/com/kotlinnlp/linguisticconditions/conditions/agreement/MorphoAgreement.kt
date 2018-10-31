@@ -7,18 +7,14 @@
 
 package com.kotlinnlp.linguisticconditions.conditions.agreement
 
+import com.kotlinnlp.linguisticconditions.ContextCheck
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
  * Verify the morphological agreement between two morphologies.
  */
-internal interface MorphoAgreement {
-
-  /**
-   * Whether to check the agreement looking at the context morphology.
-   */
-  val checkContext: Boolean
+internal interface MorphoAgreement : ContextCheck {
 
   /**
    * Whether to check the agreement of the 'lemma' property of the morphology.
@@ -88,15 +84,4 @@ internal interface MorphoAgreement {
 
     return true
   }
-
-  /**
-   * @param token a single morpho-syntactic token
-   *
-   * @return the morphology of the token on which to check the agreement
-   */
-  private fun getMorphology(token: MorphoSynToken.Single): SingleMorphology =
-    if (this.checkContext)
-      token.contextMorphologies.single().value
-    else
-      token.morphologies.single().value
 }

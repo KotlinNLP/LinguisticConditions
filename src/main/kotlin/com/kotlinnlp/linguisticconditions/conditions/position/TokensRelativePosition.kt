@@ -39,6 +39,11 @@ internal class TokensRelativePosition(
   constructor(jsonObject: JsonObject) : this(RelativePosition.Type.valueOf(jsonObject.string("type")!!))
 
   /**
+   * Whether this condition needs to look at the context morphology.
+   */
+  override val checkContext: Boolean = false
+
+  /**
    * @param tokenA a token of the sentence
    * @param tokenB a token of the sentence
    * @param tokens the list of all the tokens that compose the sentence

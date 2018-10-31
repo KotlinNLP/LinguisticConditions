@@ -37,6 +37,11 @@ internal class TokensDistance(override val value: Int) : Distance, DoubleConditi
   constructor(jsonObject: JsonObject) : this(jsonObject.int("value")!!)
 
   /**
+   * Whether this condition needs to look at the context morphology.
+   */
+  override val checkContext: Boolean = false
+
+  /**
    * @param tokenA a token of the sentence
    * @param tokenB a token of the sentence
    * @param tokens the list of all the tokens that compose the sentence

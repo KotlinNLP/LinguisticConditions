@@ -11,6 +11,7 @@ import com.beust.klaxon.JsonObject
 import com.kotlinnlp.dependencytree.DependencyTree
 import com.kotlinnlp.linguisticconditions.Condition
 import com.kotlinnlp.linguisticdescription.morphology.POS
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.interfaces.*
@@ -19,6 +20,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 /**
  * The condition that verifies the morphology of a token.
  *
+ * @param checkContext whether to verify this condition on the context morphology instead of the morphology
  * @param lemma the 'lemma' property of the morphology
  * @param pos the 'pos' property of the morphology
  * @param posPartial the partial 'pos' property of the morphology
@@ -30,6 +32,7 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  * @param tense the 'tense' property of the morphology
  */
 internal class Morphology(
+  override val checkContext: Boolean = false,
   private val lemma: String? = null,
   private val pos: POS? = null,
   private val posPartial: POS? = null,
@@ -69,6 +72,7 @@ internal class Morphology(
    * @return a new condition interpreted from the given [jsonObject]
    */
   constructor(jsonObject: JsonObject): this(
+    checkContext = jsonObject.boolean("context") ?: false,
     lemma = jsonObject.string("lemma"),
     pos = jsonObject.string("pos")?.let { POS.byAnnotation(it) },
     posPartial = jsonObject.string("pos-partial")?.let { POS.byAnnotation(it) },
@@ -90,17 +94,21 @@ internal class Morphology(
    */
   override fun isVerified(token: MorphoSynToken.Single?,
                           tokens: List<MorphoSynToken.Single>,
-                          dependencyTree: DependencyTree): Boolean =
-    token != null && token.morphologies.single().value.let { morpho ->
-      this.lemma?.equals(morpho.lemma) ?: true &&
-        this.pos?.equals(morpho.pos) ?: true &&
-        this.posPartial?.let { morpho.pos.isComposedBy(it) } ?: true &&
-        this.gender?.let { morpho is Genderable && it == morpho.gender } ?: true &&
-        this.number?.let { morpho is Numerable && it == morpho.number } ?: true &&
-        this.person?.let { morpho is PersonDeclinable && it == morpho.person } ?: true &&
-        this.case?.let { morpho is CaseDeclinable && it == morpho.case } ?: true &&
-        this.degree?.let { morpho is Gradable && it == morpho.degree } ?: true &&
-        this.mood?.let { morpho is Conjugable && it == morpho.mood } ?: true &&
-        this.tense?.let { morpho is Conjugable && it == morpho.tense } ?: true
-    }
+                          dependencyTree: DependencyTree): Boolean {
+
+    if (token == null) return false
+
+    val morpho: SingleMorphology = this.getMorphology(token)
+
+    return this.lemma?.equals(morpho.lemma) ?: true &&
+      this.pos?.equals(morpho.pos) ?: true &&
+      this.posPartial?.let { morpho.pos.isComposedBy(it) } ?: true &&
+      this.gender?.let { morpho is Genderable && it == morpho.gender } ?: true &&
+      this.number?.let { morpho is Numerable && it == morpho.number } ?: true &&
+      this.person?.let { morpho is PersonDeclinable && it == morpho.person } ?: true &&
+      this.case?.let { morpho is CaseDeclinable && it == morpho.case } ?: true &&
+      this.degree?.let { morpho is Gradable && it == morpho.degree } ?: true &&
+      this.mood?.let { morpho is Conjugable && it == morpho.mood } ?: true &&
+      this.tense?.let { morpho is Conjugable && it == morpho.tense } ?: true
+  }
 }

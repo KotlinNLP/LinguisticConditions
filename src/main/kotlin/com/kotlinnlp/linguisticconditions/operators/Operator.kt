@@ -86,14 +86,26 @@ internal sealed class Operator : Condition() {
    *
    * @param condition the condition to which this operator is applied
    */
-  abstract class Single(protected val condition: Condition) : Operator()
+  abstract class Single(protected val condition: Condition) : Operator() {
+
+    /**
+     * Whether this condition needs to look at the context morphology.
+     */
+    override val checkContext: Boolean = this.condition.checkContext
+  }
 
   /**
    * An operator that verifies more conditions on a token.
    *
    * @param conditions the conditions to which this operator is applied
    */
-  abstract class Multiple(protected val conditions: List<Condition>) : Operator()
+  abstract class Multiple(protected val conditions: List<Condition>) : Operator() {
+
+    /**
+     * Whether this condition needs to look at the context morphology.
+     */
+    override val checkContext: Boolean = this.conditions.any { it.checkContext }
+  }
 
   /**
    * An operator that verifies a double condition on pairs of target-reference tokens, extracted with a target and a
@@ -107,5 +119,11 @@ internal sealed class Operator : Condition() {
     protected val target: Condition,
     protected val reference: Condition,
     protected val condition: DoubleCondition
-  ) : Operator()
+  ) : Operator() {
+
+    /**
+     * Whether this condition needs to look at the context morphology.
+     */
+    override val checkContext: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkContext }
+  }
 }
