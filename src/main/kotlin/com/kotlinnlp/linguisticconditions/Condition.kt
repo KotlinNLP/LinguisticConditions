@@ -15,7 +15,7 @@ import com.kotlinnlp.linguisticconditions.conditions.count.CountDescendants
 import com.kotlinnlp.linguisticconditions.conditions.count.CountDirectDescendants
 import com.kotlinnlp.linguisticconditions.conditions.distance.DistanceFromGovernor
 import com.kotlinnlp.linguisticconditions.conditions.morpho.Morphology
-import com.kotlinnlp.linguisticconditions.conditions.morpho.Pos
+import com.kotlinnlp.linguisticconditions.conditions.morpho.PosBase
 import com.kotlinnlp.linguisticconditions.conditions.position.GovernorRelativePosition
 import com.kotlinnlp.linguisticconditions.conditions.position.Position
 import com.kotlinnlp.linguisticconditions.conditions.syntax.SyntacticType
@@ -45,7 +45,7 @@ abstract class Condition : ContextCheck {
       DistanceFromGovernor.ANNOTATION to DistanceFromGovernor::class,
       Morphology.ANNOTATION to Morphology::class,
       AgreementWithGovernor.ANNOTATION to AgreementWithGovernor::class,
-      Pos.ANNOTATION to Pos::class,
+      PosBase.ANNOTATION to PosBase::class,
       Position.ANNOTATION to Position::class,
       GovernorRelativePosition.ANNOTATION to GovernorRelativePosition::class
     )

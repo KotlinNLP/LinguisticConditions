@@ -19,24 +19,31 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
  *
  * @property value the POS to be verified
  */
-internal class Pos(val value: POS) : Condition() {
+internal class PosBase(val value: POS) : Condition() {
 
   companion object {
 
     /**
      * The annotation of the condition.
      */
-    const val ANNOTATION: String = "pos"
+    const val ANNOTATION: String = "pos-base"
   }
 
   /**
-   * Build a [Pos] condition from a JSON object.
+   * Build a [PosBase] condition from a JSON object.
    *
-   * @param jsonObject the JSON object that represents a [Pos] condition
+   * @param jsonObject the JSON object that represents a [PosBase] condition
    *
    * @return a new condition interpreted from the given [jsonObject]
    */
   constructor(jsonObject: JsonObject): this(POS.byAnnotation(jsonObject.string("value")!!))
+
+  /**
+   * Check requirements.
+   */
+  init {
+    require(this.value.components.size == 1) { "The value of the PosBase condition must be a base POS." }
+  }
 
   /**
    * Whether this condition needs to look at the morphological properties.
@@ -58,5 +65,5 @@ internal class Pos(val value: POS) : Condition() {
   override fun isVerified(token: MorphoSynToken.Single?,
                           tokens: List<MorphoSynToken.Single>,
                           dependencyTree: DependencyTree): Boolean =
-    token != null && (token.pos as POSTag.Base).type == this.value
+    token != null && (token.pos as POSTag.Base).type.isComposedBy(this.value)
 }
