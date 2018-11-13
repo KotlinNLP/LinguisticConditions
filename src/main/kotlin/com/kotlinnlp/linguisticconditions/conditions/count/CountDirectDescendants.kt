@@ -48,6 +48,11 @@ internal class CountDirectDescendants(private val condition: Condition,
     greaterThan = jsonObject.int("greaterThan"))
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = this.condition.checkMorpho
+
+  /**
    * Whether this condition needs to look at the context morphology.
    */
   override val checkContext: Boolean = this.condition.checkContext

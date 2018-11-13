@@ -38,6 +38,11 @@ internal class SyntacticType(val value: SyntacticType) : Condition() {
   constructor(jsonObject: JsonObject): this(SyntacticType.byAnnotation(jsonObject.string("value")!!))
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the context morphology.
    */
   override val checkContext: Boolean = false

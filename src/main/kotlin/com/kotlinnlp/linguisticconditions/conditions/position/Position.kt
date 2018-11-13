@@ -37,6 +37,11 @@ internal class Position(private val index: Int) : Condition() {
   constructor(jsonObject: JsonObject) : this(jsonObject.int("index")!!)
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the context morphology.
    */
   override val checkContext: Boolean = false

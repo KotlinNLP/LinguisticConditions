@@ -39,6 +39,11 @@ internal class Pos(val value: POS) : Condition() {
   constructor(jsonObject: JsonObject): this(POS.byAnnotation(jsonObject.string("value")!!))
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the context morphology.
    */
   override val checkContext: Boolean = false

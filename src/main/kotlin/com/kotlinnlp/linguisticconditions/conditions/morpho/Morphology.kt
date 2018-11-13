@@ -86,6 +86,10 @@ internal class Morphology(
   )
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = true
+  /**
    * @param token a token or null if called on the virtual root
    * @param tokens the list of all the tokens that compose the sentence
    * @param dependencyTree the dependency tree of the token sentence

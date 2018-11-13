@@ -37,6 +37,11 @@ internal class TokensDistance(override val value: Int) : Distance, DoubleConditi
   constructor(jsonObject: JsonObject) : this(jsonObject.int("value")!!)
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the context morphology.
    */
   override val checkContext: Boolean = false

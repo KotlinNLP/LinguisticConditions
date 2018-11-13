@@ -39,6 +39,11 @@ internal class GovernorRelativePosition(
   constructor(jsonObject: JsonObject) : this(RelativePosition.Type.valueOf(jsonObject.string("type")!!))
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the context morphology.
    */
   override val checkContext: Boolean = false

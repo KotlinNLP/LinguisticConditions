@@ -68,6 +68,11 @@ internal class TokensAgreement(
   )
 
   /**
+   * Whether this condition needs to look at the morphological properties.
+   */
+  override val checkMorpho: Boolean = true
+
+  /**
    * @param tokenA a token of the sentence
    * @param tokenB a token of the sentence
    * @param tokens the list of all the tokens that compose the sentence
