@@ -7,14 +7,14 @@
 
 package com.kotlinnlp.linguisticconditions.conditions.agreement
 
-import com.kotlinnlp.linguisticconditions.ContextCheck
+import com.kotlinnlp.linguisticconditions.LinguisticCondition
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
  * Verify the morphological agreement between two morphologies.
  */
-internal interface MorphoAgreement : ContextCheck {
+internal interface MorphoAgreement : LinguisticCondition {
 
   /**
    * Whether to check the agreement of the 'lemma' property of the morphology.

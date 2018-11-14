@@ -12,9 +12,9 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 
 /**
  * Implemented by all the conditions.
- * Make available flags that indicate whether the condition needs to look at the morphology of the tokens.
+ * It defines flags that indicate properties of a condition, like if it needs to look at the morphology of the tokens.
  */
-interface ContextCheck {
+interface LinguisticCondition {
 
   /**
    * Whether this condition needs to look at the morphological properties.

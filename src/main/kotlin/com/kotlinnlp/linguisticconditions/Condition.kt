@@ -27,7 +27,7 @@ import kotlin.reflect.KFunction
 /**
  * A condition that can be verified on a morpho-syntactic token.
  */
-abstract class Condition : ContextCheck {
+abstract class Condition : LinguisticCondition {
 
   /**
    * A [Condition] factory.
