@@ -17,6 +17,11 @@ import com.kotlinnlp.linguisticdescription.sentence.token.MorphoSynToken
 interface LinguisticCondition {
 
   /**
+   * Whether this condition looks at a single token, without requiring to check other tokens properties.
+   */
+  val isUnary: Boolean
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   val checkMorpho: Boolean

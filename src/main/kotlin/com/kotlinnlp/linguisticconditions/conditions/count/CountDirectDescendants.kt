@@ -48,6 +48,11 @@ internal class CountDirectDescendants(private val condition: Condition,
     greaterThan = jsonObject.int("greaterThan"))
 
   /**
+   * Whether this condition looks at a single token, without requiring to check other tokens properties.
+   */
+  override val isUnary: Boolean = false
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorpho: Boolean = this.condition.checkMorpho

@@ -86,6 +86,11 @@ internal class Morphology(
   )
 
   /**
+   * Whether this condition looks at a single token, without requiring to check other tokens properties.
+   */
+  override val isUnary: Boolean = true
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorpho: Boolean = true

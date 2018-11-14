@@ -89,12 +89,17 @@ internal sealed class Operator : Condition() {
   abstract class Single(protected val condition: Condition) : Operator() {
 
     /**
-     * Whether this condition needs to look at the morphological properties.
+     * Whether this operator looks at a single token, without requiring to check other tokens properties.
+     */
+    override val isUnary: Boolean = this.condition.isUnary
+
+    /**
+     * Whether this operator needs to look at the morphological properties.
      */
     override val checkMorpho: Boolean = this.condition.checkMorpho
 
     /**
-     * Whether this condition needs to look at the context morphology.
+     * Whether this operator needs to look at the context morphology.
      */
     override val checkContext: Boolean = this.condition.checkContext
   }
@@ -107,12 +112,17 @@ internal sealed class Operator : Condition() {
   abstract class Multiple(protected val conditions: List<Condition>) : Operator() {
 
     /**
-     * Whether this condition needs to look at the morphological properties.
+     * Whether this operator looks at a single token, without requiring to check other tokens properties.
+     */
+    override val isUnary: Boolean = this.conditions.all { it.isUnary }
+
+    /**
+     * Whether this operator needs to look at the morphological properties.
      */
     override val checkMorpho: Boolean = this.conditions.any { it.checkMorpho }
 
     /**
-     * Whether this condition needs to look at the context morphology.
+     * Whether this operator needs to look at the context morphology.
      */
     override val checkContext: Boolean = this.conditions.any { it.checkContext }
   }
@@ -132,12 +142,17 @@ internal sealed class Operator : Condition() {
   ) : Operator() {
 
     /**
-     * Whether this condition needs to look at the morphological properties.
+     * Whether this operator looks at a single token, without requiring to check other tokens properties.
+     */
+    override val isUnary: Boolean = listOf(this.target, this.reference, this.condition).all { it.isUnary }
+
+    /**
+     * Whether this operator needs to look at the morphological properties.
      */
     override val checkMorpho: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkMorpho }
 
     /**
-     * Whether this condition needs to look at the context morphology.
+     * Whether this operator needs to look at the context morphology.
      */
     override val checkContext: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkContext }
   }
