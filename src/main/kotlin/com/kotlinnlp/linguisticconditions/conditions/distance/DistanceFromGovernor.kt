@@ -42,6 +42,12 @@ internal class DistanceFromGovernor(override val value: Int) : Distance, Conditi
   override val isUnary: Boolean = false
 
   /**
+   * Whether this condition looks at a dependent-governor tokens pair, without requiring to check other tokens
+   * properties.
+   */
+  override val isBinary: Boolean = true
+
+  /**
    * Whether this condition needs to look at the morphology.
    */
   override val checkMorpho: Boolean = false

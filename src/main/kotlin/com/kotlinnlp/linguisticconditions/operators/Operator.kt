@@ -94,6 +94,12 @@ internal sealed class Operator : Condition() {
     override val isUnary: Boolean = this.condition.isUnary
 
     /**
+     * Whether this condition looks at a dependent-governor tokens pair, without requiring to check other tokens
+     * properties.
+     */
+    override val isBinary: Boolean = this.condition.isBinary
+
+    /**
      * Whether this operator needs to look at the morphology.
      */
     override val checkMorpho: Boolean = this.condition.checkMorpho
@@ -120,6 +126,12 @@ internal sealed class Operator : Condition() {
      * Whether this operator looks at a single token, without requiring to check other tokens properties.
      */
     override val isUnary: Boolean = this.conditions.all { it.isUnary }
+
+    /**
+     * Whether this condition looks at a dependent-governor tokens pair, without requiring to check other tokens
+     * properties.
+     */
+    override val isBinary: Boolean = this.conditions.all { it.isBinary }
 
     /**
      * Whether this operator needs to look at the morphology.
@@ -155,6 +167,12 @@ internal sealed class Operator : Condition() {
      * Whether this operator looks at a single token, without requiring to check other tokens properties.
      */
     override val isUnary: Boolean = sequenceOf(this.target, this.reference, this.condition).all { it.isUnary }
+
+    /**
+     * Whether this condition looks at a dependent-governor tokens pair, without requiring to check other tokens
+     * properties.
+     */
+    override val isBinary: Boolean = sequenceOf(this.target, this.reference, this.condition).all { it.isBinary }
 
     /**
      * Whether this operator needs to look at the morphology.

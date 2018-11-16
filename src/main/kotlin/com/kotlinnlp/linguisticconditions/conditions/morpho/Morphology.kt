@@ -91,6 +91,12 @@ internal class Morphology(
   override val isUnary: Boolean = true
 
   /**
+   * Whether this condition looks at a dependent-governor tokens pair, without requiring to check other tokens
+   * properties.
+   */
+  override val isBinary: Boolean = false
+
+  /**
    * Whether this condition needs to look at the morphology.
    */
   override val checkMorpho: Boolean = true
@@ -98,7 +104,8 @@ internal class Morphology(
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorphoProp: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any { it != null }
+  override val checkMorphoProp: Boolean =
+    sequenceOf(gender, number, person, case, degree, mood, tense).any { it != null }
 
   /**
    * Check requirements.

@@ -22,6 +22,12 @@ interface LinguisticCondition {
   val isUnary: Boolean
 
   /**
+   * Whether this condition looks at a dependent-governor tokens pair, without requiring to check other tokens
+   * properties.
+   */
+  val isBinary: Boolean
+
+  /**
    * Whether this condition needs to look at the morphology.
    */
   val checkMorpho: Boolean
