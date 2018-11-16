@@ -46,7 +46,7 @@ internal class SyntacticTypePartial(val value: SyntacticType) : Condition() {
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorpho: Boolean = false
+  override val checkMorphoProp: Boolean = false
 
   /**
    * Whether this condition needs to look at the context morphology.

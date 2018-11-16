@@ -75,13 +75,13 @@ internal class AgreementWithGovernor(
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorpho: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any()
+  override val checkMorphoProp: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any()
 
   /**
    * Check requirements.
    */
   init {
-    require(!this.checkContext || this.checkMorpho) {
+    require(!this.checkContext || this.checkMorphoProp) {
       "The 'checkContext' property cannot be true if the condition does not check morphological properties."
     }
   }

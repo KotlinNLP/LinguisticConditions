@@ -93,13 +93,13 @@ internal class Morphology(
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorpho: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any { it != null }
+  override val checkMorphoProp: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any { it != null }
 
   /**
    * Check requirements.
    */
   init {
-    require(!this.checkContext || this.checkMorpho) {
+    require(!this.checkContext || this.checkMorphoProp) {
       "The 'checkContext' property cannot be true if the condition does not check morphological properties."
     }
   }

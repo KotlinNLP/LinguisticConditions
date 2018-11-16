@@ -44,7 +44,7 @@ internal class DistanceFromGovernor(override val value: Int) : Distance, Conditi
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorpho: Boolean = false
+  override val checkMorphoProp: Boolean = false
 
   /**
    * Whether this condition needs to look at the context morphology.

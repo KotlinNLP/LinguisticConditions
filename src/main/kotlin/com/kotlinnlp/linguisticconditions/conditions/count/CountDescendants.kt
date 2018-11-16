@@ -55,7 +55,7 @@ internal class CountDescendants(private val condition: Condition,
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorpho: Boolean = this.condition.checkMorpho
+  override val checkMorphoProp: Boolean = this.condition.checkMorphoProp
 
   /**
    * Whether this condition needs to look at the context morphology.

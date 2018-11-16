@@ -24,7 +24,7 @@ interface LinguisticCondition {
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  val checkMorpho: Boolean
+  val checkMorphoProp: Boolean
 
   /**
    * Whether this condition needs to look at the context morphology.

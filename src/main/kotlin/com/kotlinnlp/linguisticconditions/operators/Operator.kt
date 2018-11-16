@@ -96,7 +96,7 @@ internal sealed class Operator : Condition() {
     /**
      * Whether this operator needs to look at the morphological properties.
      */
-    override val checkMorpho: Boolean = this.condition.checkMorpho
+    override val checkMorphoProp: Boolean = this.condition.checkMorphoProp
 
     /**
      * Whether this operator needs to look at the context morphology.
@@ -119,7 +119,7 @@ internal sealed class Operator : Condition() {
     /**
      * Whether this operator needs to look at the morphological properties.
      */
-    override val checkMorpho: Boolean = this.conditions.any { it.checkMorpho }
+    override val checkMorphoProp: Boolean = this.conditions.any { it.checkMorphoProp }
 
     /**
      * Whether this operator needs to look at the context morphology.
@@ -149,7 +149,7 @@ internal sealed class Operator : Condition() {
     /**
      * Whether this operator needs to look at the morphological properties.
      */
-    override val checkMorpho: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkMorpho }
+    override val checkMorphoProp: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkMorphoProp }
 
     /**
      * Whether this operator needs to look at the context morphology.
