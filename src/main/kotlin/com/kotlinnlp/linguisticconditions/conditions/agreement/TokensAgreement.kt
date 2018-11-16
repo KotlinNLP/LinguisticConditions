@@ -75,7 +75,16 @@ internal class TokensAgreement(
   /**
    * Whether this condition needs to look at the morphological properties.
    */
-  override val checkMorpho: Boolean = true
+  override val checkMorpho: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any()
+
+  /**
+   * Check requirements.
+   */
+  init {
+    require(!this.checkContext || this.checkMorpho) {
+      "The 'checkContext' property cannot be true if the condition does not check morphological properties."
+    }
+  }
 
   /**
    * @param tokenA a token of the sentence
