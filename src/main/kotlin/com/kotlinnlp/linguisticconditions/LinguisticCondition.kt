@@ -22,6 +22,11 @@ interface LinguisticCondition {
   val isUnary: Boolean
 
   /**
+   * Whether this condition needs to look at the morphology.
+   */
+  val checkMorpho: Boolean
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   val checkMorphoProp: Boolean

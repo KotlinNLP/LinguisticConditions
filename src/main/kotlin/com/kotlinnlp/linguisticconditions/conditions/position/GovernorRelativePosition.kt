@@ -44,6 +44,11 @@ internal class GovernorRelativePosition(
   override val isUnary: Boolean = false
 
   /**
+   * Whether this condition needs to look at the morphology.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorphoProp: Boolean = false

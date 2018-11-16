@@ -43,6 +43,11 @@ internal class SyntacticType(val value: SyntacticType) : Condition() {
   override val isUnary: Boolean = true
 
   /**
+   * Whether this condition needs to look at the morphology.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorphoProp: Boolean = false

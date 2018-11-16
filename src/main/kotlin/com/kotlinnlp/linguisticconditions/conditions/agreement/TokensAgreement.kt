@@ -73,6 +73,11 @@ internal class TokensAgreement(
   override val isUnary: Boolean = false
 
   /**
+   * Whether this condition needs to look at the morphology.
+   */
+  override val checkMorpho: Boolean = true
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorphoProp: Boolean = sequenceOf(gender, number, person, case, degree, mood, tense).any()

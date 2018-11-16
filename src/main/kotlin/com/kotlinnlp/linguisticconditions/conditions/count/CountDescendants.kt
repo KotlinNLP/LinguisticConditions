@@ -53,6 +53,11 @@ internal class CountDescendants(private val condition: Condition,
   override val isUnary: Boolean = false
 
   /**
+   * Whether this condition needs to look at the morphology.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorphoProp: Boolean = this.condition.checkMorphoProp

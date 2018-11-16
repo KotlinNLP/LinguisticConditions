@@ -94,6 +94,11 @@ internal sealed class Operator : Condition() {
     override val isUnary: Boolean = this.condition.isUnary
 
     /**
+     * Whether this operator needs to look at the morphology.
+     */
+    override val checkMorpho: Boolean = this.condition.checkMorpho
+
+    /**
      * Whether this operator needs to look at the morphological properties.
      */
     override val checkMorphoProp: Boolean = this.condition.checkMorphoProp
@@ -115,6 +120,11 @@ internal sealed class Operator : Condition() {
      * Whether this operator looks at a single token, without requiring to check other tokens properties.
      */
     override val isUnary: Boolean = this.conditions.all { it.isUnary }
+
+    /**
+     * Whether this operator needs to look at the morphology.
+     */
+    override val checkMorpho: Boolean = this.conditions.any { it.checkMorpho }
 
     /**
      * Whether this operator needs to look at the morphological properties.
@@ -147,9 +157,15 @@ internal sealed class Operator : Condition() {
     override val isUnary: Boolean = listOf(this.target, this.reference, this.condition).all { it.isUnary }
 
     /**
+     * Whether this operator needs to look at the morphology.
+     */
+    override val checkMorpho: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkMorpho }
+
+    /**
      * Whether this operator needs to look at the morphological properties.
      */
-    override val checkMorphoProp: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkMorphoProp }
+    override val checkMorphoProp: Boolean =
+      listOf(this.target, this.reference, this.condition).any { it.checkMorphoProp }
 
     /**
      * Whether this operator needs to look at the context morphology.

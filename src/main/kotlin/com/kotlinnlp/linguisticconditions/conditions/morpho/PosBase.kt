@@ -51,6 +51,11 @@ internal class PosBase(val value: POS) : Condition() {
   override val isUnary: Boolean = true
 
   /**
+   * Whether this condition needs to look at the morphology.
+   */
+  override val checkMorpho: Boolean = false
+
+  /**
    * Whether this condition needs to look at the morphological properties.
    */
   override val checkMorphoProp: Boolean = false
