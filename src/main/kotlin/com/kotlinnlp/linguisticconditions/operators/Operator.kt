@@ -154,22 +154,22 @@ internal sealed class Operator : Condition() {
     /**
      * Whether this operator looks at a single token, without requiring to check other tokens properties.
      */
-    override val isUnary: Boolean = listOf(this.target, this.reference, this.condition).all { it.isUnary }
+    override val isUnary: Boolean = sequenceOf(this.target, this.reference, this.condition).all { it.isUnary }
 
     /**
      * Whether this operator needs to look at the morphology.
      */
-    override val checkMorpho: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkMorpho }
+    override val checkMorpho: Boolean = sequenceOf(this.target, this.reference, this.condition).any { it.checkMorpho }
 
     /**
      * Whether this operator needs to look at the morphological properties.
      */
     override val checkMorphoProp: Boolean =
-      listOf(this.target, this.reference, this.condition).any { it.checkMorphoProp }
+      sequenceOf(this.target, this.reference, this.condition).any { it.checkMorphoProp }
 
     /**
      * Whether this operator needs to look at the context morphology.
      */
-    override val checkContext: Boolean = listOf(this.target, this.reference, this.condition).any { it.checkContext }
+    override val checkContext: Boolean = sequenceOf(this.target, this.reference, this.condition).any { it.checkContext }
   }
 }
