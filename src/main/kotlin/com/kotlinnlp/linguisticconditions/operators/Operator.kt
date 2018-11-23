@@ -131,7 +131,8 @@ internal sealed class Operator : Condition() {
      * Whether this operator looks at a dependent-governor tokens pair, without requiring to check other tokens
      * properties.
      */
-    override val isBinary: Boolean = this.conditions.all { it.isBinary }
+    override val isBinary: Boolean =
+      this.conditions.all { it.isUnary || it.isBinary } && this.conditions.any { it.isBinary }
 
     /**
      * Whether this operator needs to look at the morphology.
@@ -172,7 +173,9 @@ internal sealed class Operator : Condition() {
      * Whether this operator looks at a dependent-governor tokens pair, without requiring to check other tokens
      * properties.
      */
-    override val isBinary: Boolean = sequenceOf(this.target, this.reference, this.condition).all { it.isBinary }
+    override val isBinary: Boolean = sequenceOf(this.target, this.reference, this.condition).let { c ->
+      c.all { it.isUnary || it.isBinary } && c.any { it.isBinary }
+    }
 
     /**
      * Whether this operator needs to look at the morphology.
