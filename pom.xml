@@ -57,8 +57,8 @@
         <spek.version>1.1.5</spek.version>
         <dokka.version>0.9.16</dokka.version>
         <klaxon.version>3.0.5</klaxon.version>
-        <linguisticdescription.version>0.10.1</linguisticdescription.version>
-        <dependencytree.version>0.4.1</dependencytree.version>
+        <linguisticdescription.version>0.11.0</linguisticdescription.version>
+        <dependencytree.version>0.4.2</dependencytree.version>
     </properties>
 
     <repositories>
