@@ -53,15 +53,15 @@ internal class Morphology(
     const val ANNOTATION: String = "morphology"
 
     /**
-     * Read a morphology property from a JSON object.
+     * Read a grammatical property from a JSON object.
      *
      * @param name the name of the property
      * @param jsonObject the JSON object from which to read the property
      *
      * @return the property read or null if not present
      */
-    private fun readProperty(name: String, jsonObject: JsonObject): MorphologyProperty? =
-      jsonObject.string(name)?.let { MorphologyPropertyFactory(propertyName = name, valueAnnotation = it) }
+    private fun readProperty(name: String, jsonObject: JsonObject): GrammaticalProperty? =
+      jsonObject.string(name)?.let { GrammaticalPropertyFactory(propertyName = name, valueAnnotation = it) }
   }
 
   /**
